@@ -14,6 +14,24 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @PutMapping
+    public ResponseEntity save(@RequestBody User user) {
+        User savedUser = userService.save(user);
+        if (savedUser == null) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity(user, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity update(@RequestBody User user) {
+        User updatedUser = userService.update(user);
+        if (updatedUser == null) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity(user, HttpStatus.OK);
+    }
+
     @GetMapping("auth")
     public ResponseEntity getByLoginAndPassword(@RequestParam String login,
                                                 @RequestParam String password) {
@@ -32,4 +50,6 @@ public class UserController {
         }
         return new ResponseEntity(user, HttpStatus.OK);
     }
+
+
 }
