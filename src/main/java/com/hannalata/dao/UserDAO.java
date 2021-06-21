@@ -12,9 +12,9 @@ public interface UserDAO extends JpaRepository<User, Integer> {
 
     User getFirstByLoginAndPassword(String login, String password);
 
-    @Query(nativeQuery = true, value = "SELECT * FROM users WHERE first_name=:firstName AND last_name=:lastName")
+    @Query(nativeQuery = true,
+            value = "SELECT * FROM users WHERE first_name=:firstName AND last_name=:lastName")
     List<User> getAllBySomeFilters(String firstName, String lastName);
 
     User getFirstByLogin(String login);
-
 }
