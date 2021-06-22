@@ -37,7 +37,7 @@ public class UserService {
     }
 
     public User update(User user) {
-        if (user.getId() != null && userDAO.getOne(user.getId()) != null) {
+        if (user.getId() != null && userDAO.findById(user.getId()) != null) {
             return userDAO.save(user);
         }
         return null;
