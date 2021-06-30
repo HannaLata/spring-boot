@@ -18,7 +18,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @PutMapping
+    @PostMapping
     public ResponseEntity save(@RequestBody User user) {
         User savedUser = userService.save(user);
         if (savedUser == null) {
@@ -27,7 +27,7 @@ public class UserController {
         return new ResponseEntity(user, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PutMapping
     public ResponseEntity update(@RequestBody User user) {
         User savedUser = userService.update(user);
         if (savedUser == null) {
@@ -71,7 +71,7 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity deleteById(@PathVariable Integer id) {
         try {
             userService.delete(id);
